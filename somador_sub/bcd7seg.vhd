@@ -15,14 +15,14 @@ entity bcd7seg is
 	PORT(
         sw_debounce		: IN STD_LOGIC_VECTOR(15 downto 0);
         an				: OUT STD_LOGIC_VECTOR(3 downto 0); -- coluna dos dados (anodo)
-        seg				: OUT STD_LOGIC_VECTOR(6 downto 0); -- próprio segmento
+        seg				: OUT STD_LOGIC_VECTOR(6 downto 0) -- próprio segmento
     );
 end bcd7seg;
 
 entity bcd_decoder is
 	PORT(
     	input : IN STD_LOGIC_VECTOR(3 downto 0);
-        output: OUT STD_LOGIC_VECTOR(6 downto 0);
+        output: OUT STD_LOGIC_VECTOR(6 downto 0)
     );
 end bcd_decoder;
 
@@ -30,7 +30,7 @@ architecture structural of bcd7seg is
 	component bcd_decoder is
     	PORT(
         	input : IN STD_LOGIC_VECTOR(3 downto 0);
-            output: OUT STD_LOGIC_VECTOR(6 downto 0);
+            output: OUT STD_LOGIC_VECTOR(6 downto 0)
         );
     end component;
     

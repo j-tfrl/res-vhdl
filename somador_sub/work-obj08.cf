@@ -1,0 +1,4 @@
+v 4
+file . "kbd_encoder.vhd" "51369eb27c55d5fb9b79b0cdd8dffccfd1ff23e9" "20260927214940.163":
+  entity kbd_encoder at 11( 251) + 0 on 13;
+  architecture behavioral of kbd_encoder at 28( 715) + 0 on 14;
