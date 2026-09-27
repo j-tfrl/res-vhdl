@@ -15,7 +15,7 @@ architecture behavior of tb_calculator is
             -- DISPLAY
             col_out : OUT STD_LOGIC_VECTOR(3 downto 0);
             an      : OUT STD_LOGIC_VECTOR(3 downto 0);
-            seg     : OUT STD_LOGIC_VECTOR(6 downto 0);
+            seg     : OUT STD_LOGIC_VECTOR(6 downto 0)
         );
     end component;
 
@@ -27,32 +27,48 @@ signal col_out  : STD_LOGIC_VECTOR(3 downto 0);
 signal an       : STD_LOGIC_VECTOR(3 downto 0);
 signal seg      : STD_LOGIC_VECTOR(6 downto 0);
 
-constant clk_period: time:=20ns; -- 50 Mhz
+constant clk_period: time:=20 ns; -- 50 Mhz
 
 procedure press_key(
--- td
+    signal row_sig        : OUT STD_LOGIC_VECTOR(3 downto 0);
+    signal clk_sig        : IN STD_LOGIC;
+    constant row_pattern  : IN STD_LOGIC_VECTOR(3 downto 0);
+    constant col_pattern  : IN STD_LOGIC_VECTOR(3 downto 0)
 ) is
 
     begin
+        row_sig<=row_pattern;
+
+        wait until rising_edge(clk_sig);
+        wait until rising_edge(clk_sig);
+        wait until rising_edge(clk_sig);
+
+        -- solta a tecla
+        row_sig<="1111";
+
+        -- aguarda debounce
+        wait until rising_edge(clk_sig);
+        wait until rising_edge(clk_sig);
+
 
     end procedure;
 
 begin 
 
-        uet: calc PORT MAP(
+        uet: top_calculator PORT MAP(
             clk         =>clk,
             rst         =>rst,
             row_in      =>row_in,
             col_out     =>col_out,
-            an          =>an;
-            seg         =>seg;
+            an          =>an,
+            seg         =>seg
         );
 
         clk_process: process
         begin
-            clk = '0';
+            clk <= '0';
             wait for clk_period/2;   
-            clk = '1';                
+            clk <= '1';                
             wait for clk_period/2;
         end process;
         
@@ -60,9 +76,9 @@ begin
         stim_proc: process
         begin
             wait for 100 ns;
-            rst = '1';
+            rst <= '1';
             wait for 100 ns;   
-            rst = '0';                
+            rst <= '0';                
             wait for 50 ns;
 
         report "COMECANDO TESTE 1: 7+3";
@@ -96,7 +112,7 @@ begin
         wait for 200 ns;
         report "TESTE 2 FINALIZADO. CHEQUE AS ONDAS NO GTK";
         
-        report "COMEÇANDO TESTE 3: 5+5";
+        report "COMECANDO TESTE 3: 5+5";
         press_key(row_in, clk, "1101", "1101");
         press_key(row_in, clk, "0111", "1101");
         press_key(row_in, clk, "1110", "0111");
@@ -106,7 +122,7 @@ begin
         wait for 200 ns;
         report "TESTE 3 FINALIZADO. CHEQUE AS ONDAS NO GTK";
 
-        report "COMEÇANDO TESTE 4: 8-8";
+        report "COMECANDO TESTE 4: 8-8";
         press_key(row_in, clk, "1011", "1101");
         press_key(row_in, clk, "0111", "1101");
         press_key(row_in, clk, "1101", "0111");
