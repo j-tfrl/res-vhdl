@@ -37,7 +37,7 @@ architecture behavioral of kbd_encoder is
         variable temp: integer;
        begin 
        	if bin>999 then temp:=999;
-        else temp:=bin
+        else temp:=bin;
         end if;
         for i in 0 to 2 loop
         	bcd(i*4+3 downto i*4) :=STD_LOGIC_VECTOR(to_unsigned((temp/10**i)) mod 10,4);
@@ -78,7 +78,7 @@ begin
          end case;
       when "0111"=> -- linha 3 ativa
     	case col_out is
-       		WHEN "1101" => key_code <= "0000"; status_idle='1'; -- digitou 0
+       		WHEN "1101" => key_code <= "0000"; status_idle<='1'; -- digitou 0
             WHEN others => NULL;
 		end case;
       when others=> null;
@@ -86,7 +86,7 @@ begin
   end process;
      
      
-  process(clk, rst):
+  process(clk, rst)
 	variable num_A 		: INTEGER range 0 to 999 := 0;
     variable num_B 		: INTEGER range 0 to 999 := 0;
     variable atual_dig 	: INTEGER range 0 to 9   := 0; -- inteiro atual que está sendo digitado
@@ -94,16 +94,16 @@ begin
     variable prev_strobe: STD_LOGIC 			 := '0';
   begin 
   	if rst='1' then
-    	num_A=0;
-        num_B=0;
-        state=0;
+    	num_A<=0;
+        num_B<=0;
+        state<=0;
         op<='0';
         dig_A<=(others=>'0');
         dig_B<=(others=>'0');
         prev_strobe<='0';
      elsif rising_edge(clk) then
      	if (status_idle='1' and prev_strobe='0') then
-        	if (key_code>='0000' and key_code<='1001') then
+        	if (key_code >= "0000" and key_code <= "1001") then
             	atual_dig:=to_integer(unsigned(key_code));
                 -- shifts (mudança de potência de dez)
                 if state=0 then
@@ -124,9 +124,9 @@ begin
                     end if;
                     
                     state:='1'; -- estado é uma variável (indicamos que houve interação)
-                end if;
-              end if;  
-              prev_strobe:=status_idle;
-           end if;  
+        end if;
+    end if;  
+              prev_strobe<=status_idle;
+           end if;
   end process;
 end Behavioral;
