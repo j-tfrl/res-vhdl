@@ -115,6 +115,9 @@ begin
                 	if num_B<=99 then
                     	num_B:=(num_B * 10) + atual_dig;
                     end if;
+                    dig_B<=bin_to_bcd(num_B);
+                end if;
+
                 elsif (key_code="1010" or key_code="1011") then
                 	if key_code="1010" then
                     	op<='0'; -- opera '+'
@@ -126,7 +129,7 @@ begin
                     state:='1'; -- estado é uma variável (indicamos que houve interação)
         end if;
     end if;  
-              prev_strobe<=status_idle;
-           end if;
-  end process;
+    prev_strobe<=status_idle;
+end if;
+end process;
 end Behavioral;
