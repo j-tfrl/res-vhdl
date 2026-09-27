@@ -40,7 +40,7 @@ architecture behavioral of kbd_encoder is
         else temp:=bin;
         end if;
         for i in 0 to 2 loop
-        	bcd(i*4+3 downto i*4) := STD_LOGIC_VECTOR(to_unsigned((temp/10**i)) mod 10,4));    
+        	bcd(i*4+3 downto i*4) := STD_LOGIC_VECTOR(to_unsigned((temp/(10**i)) mod 10,4));    
         end loop;
      return bcd;
      end function;
