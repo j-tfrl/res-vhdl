@@ -1,0 +1,20 @@
+{
+  "name": "VHDL Development Environment",
+  "image": "://microsoft.com",
+  
+  "features": {
+    "gh/features/ghdl": "latest" 
+  },
+
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y gtkwave",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "puvese.vscode-vhdl-tool",      
+        "johannesbonk.vscode-ghdl-interface", 
+        "pavel-gromov.vcd-viewer"  
+      ]    
+    }
+  }
+}
