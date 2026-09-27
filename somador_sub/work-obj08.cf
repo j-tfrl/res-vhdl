@@ -1,7 +1,12 @@
 v 4
-file . "soma_sub.vhd" "15b09d29cceacbd9271f53bbf860f561b3dad4eb" "20260927220859.284":
-  entity soma_sub at 4( 52) + 0 on 17;
-  architecture dataflow of soma_sub at 19( 454) + 0 on 18;
+file . "bcd7seg.vhd" "2181b8d386c67aa4e97f5646434bcb0d63f2d224" "20260927222528.672":
+  entity bcd7seg at 10( 177) + 0 on 19;
+  entity bcd_decoder at 22( 499) + 0 on 20;
+  architecture structural of bcd7seg at 32( 692) + 0 on 21;
+  architecture combinational of bcd_decoder at 51( 1527) + 0 on 22;
 file . "kbd_encoder.vhd" "51369eb27c55d5fb9b79b0cdd8dffccfd1ff23e9" "20260927220825.860":
   entity kbd_encoder at 11( 251) + 0 on 15;
   architecture behavioral of kbd_encoder at 28( 715) + 0 on 16;
+file . "soma_sub.vhd" "15b09d29cceacbd9271f53bbf860f561b3dad4eb" "20260927220859.284":
+  entity soma_sub at 4( 52) + 0 on 17;
+  architecture dataflow of soma_sub at 19( 454) + 0 on 18;

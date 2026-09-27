@@ -9,7 +9,7 @@
 
 library IEEE;
 use IEEE.std_logic_1164.all;
--- use IEEE.NUMERIC_STD.all;
+use IEEE.NUMERIC_STD.all;
 
 entity bcd7seg is
 	PORT(
@@ -18,6 +18,9 @@ entity bcd7seg is
         seg				: OUT STD_LOGIC_VECTOR(6 downto 0) -- próprio segmento
     );
 end bcd7seg;
+
+library IEEE;
+use IEEE.std_logic_1164.all;
 
 entity bcd_decoder is
 	PORT(
@@ -45,7 +48,7 @@ architecture structural of bcd7seg is
         an <= "0000"; -- digitos mostrados completamente
 end architecture;
 
-architecture combinational of bcd7seg is
+architecture combinational of bcd_decoder is
 begin
         process(input)
         begin
