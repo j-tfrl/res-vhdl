@@ -45,24 +45,24 @@ architecture structural of bcd7seg is
         an <= "0000"; -- digitos mostrados completamente
 end architecture;
 
-architecture combinational of bcd_decoder is
+architecture combinational of bcd7seg is
 begin
-	process(input)
-    	begin
-        	case input is
-              WHEN "0000" => output <= "1000000"; --0
-              WHEN "0001" => output <= "1111001"; --1
-              WHEN "0010" => output <= "0100100"; --2
-              WHEN "0011" => output <= "0110000"; --3
-              WHEN "0100" => output <= "0011001"; --4
-              WHEN "0101" => output <= "0010010"; --5
-              WHEN "0110" => output <= "0000010"; --6
-              WHEN "0111" => output <= "1111000"; --7
-              WHEN "1000" => output <= "0000000"; --8
-              WHEN "1001" => output <= "0011000"; --9
-              WHEN others => output <= "1000000";
-          	end case;
-     end process;
+        process(input)
+        begin
+                case input is
+                    WHEN "0000" => output <= "1000000"; --0
+                    WHEN "0001" => output <= "1111001"; --1
+                    WHEN "0010" => output <= "0100100"; --2
+                    WHEN "0011" => output <= "0110000"; --3
+                    WHEN "0100" => output <= "0011001"; --4
+                    WHEN "0101" => output <= "0010010"; --5
+                    WHEN "0110" => output <= "0000010"; --6
+                    WHEN "0111" => output <= "1111000"; --7
+                    WHEN "1000" => output <= "0000000"; --8
+                    WHEN "1001" => output <= "0011000"; --9
+                    WHEN others => output <= "1000000";
+                end case;
+        end process;
 end combinational;
      
         
