@@ -7,7 +7,7 @@ entity tb_calculator is
 end tb_calculator;
 
 architecture behavior of tb_calculator is
-    component top_calculator
+    component calc
         PORT(
             clk     : IN STD_LOGIC;
             rst     : IN STD_LOGIC;    
@@ -15,7 +15,8 @@ architecture behavior of tb_calculator is
             -- DISPLAY
             col_out : OUT STD_LOGIC_VECTOR(3 downto 0);
             an      : OUT STD_LOGIC_VECTOR(3 downto 0);
-            seg     : OUT STD_LOGIC_VECTOR(6 downto 0)
+            seg     : OUT STD_LOGIC_VECTOR(6 downto 0);
+            Cout    : OUT STD_LOGIC
         );
     end component;
 
@@ -26,6 +27,7 @@ signal row_in   : STD_LOGIC_VECTOR(3 downto 0) := "1111";
 signal col_out  : STD_LOGIC_VECTOR(3 downto 0);
 signal an       : STD_LOGIC_VECTOR(3 downto 0);
 signal seg      : STD_LOGIC_VECTOR(6 downto 0);
+signal cout_tb  : STD_LOGIC;
 
 constant clk_period: time:=20 ns; -- 50 Mhz
 
@@ -55,13 +57,14 @@ procedure press_key(
 
 begin 
 
-        uet: top_calculator PORT MAP(
+        uet: calc PORT MAP(
             clk         =>clk,
             rst         =>rst,
             row_in      =>row_in,
             col_out     =>col_out,
             an          =>an,
-            seg         =>seg
+            seg         =>seg,
+            Cout        =>cout_tb
         );
 
         clk_process: process

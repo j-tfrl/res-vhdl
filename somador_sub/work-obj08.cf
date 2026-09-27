@@ -1,18 +1,18 @@
 v 4
-file . "tb_calculator.vhd" "61ba6b17d2262c39b9d390a23587a6df4e246b80" "20260927224505.932":
-  entity tb_calculator at 1( 0) + 0 on 43;
-  architecture behavior of tb_calculator at 9( 139) + 0 on 44;
-file . "soma_sub.vhd" "15b09d29cceacbd9271f53bbf860f561b3dad4eb" "20260927223720.086":
-  entity soma_sub at 4( 52) + 0 on 39;
-  architecture dataflow of soma_sub at 19( 454) + 0 on 40;
-file . "kbd_encoder.vhd" "51369eb27c55d5fb9b79b0cdd8dffccfd1ff23e9" "20260927223724.782":
-  entity kbd_encoder at 11( 251) + 0 on 41;
-  architecture behavioral of kbd_encoder at 28( 715) + 0 on 42;
-file . "bcd7seg.vhd" "2181b8d386c67aa4e97f5646434bcb0d63f2d224" "20260927223716.395":
-  entity bcd7seg at 10( 177) + 0 on 35;
-  entity bcd_decoder at 22( 499) + 0 on 36;
-  architecture structural of bcd7seg at 32( 692) + 0 on 37;
-  architecture combinational of bcd_decoder at 51( 1527) + 0 on 38;
-file . "top_calculator.vhd" "ba1ada25606eebe69384cf7b7da34a92b4bab21f" "20260927223712.132":
-  entity calc at 3( 51) + 0 on 33;
-  architecture structural of calc at 22( 494) + 0 on 34;
+file . "tb_calculator.vhd" "ae186df658dc5538d50b236c3fd3440add61f73d" "20260927232202.689":
+  entity tb_calculator at 1( 0) + 0 on 29;
+  architecture behavior of tb_calculator at 9( 139) + 0 on 30;
+file . "bcd7seg.vhd" "2181b8d386c67aa4e97f5646434bcb0d63f2d224" "20260927230832.223":
+  entity bcd7seg at 10( 177) + 0 on 15;
+  entity bcd_decoder at 22( 499) + 0 on 16;
+  architecture structural of bcd7seg at 32( 692) + 0 on 17;
+  architecture combinational of bcd_decoder at 51( 1527) + 0 on 18;
+file . "kbd_encoder.vhd" "51369eb27c55d5fb9b79b0cdd8dffccfd1ff23e9" "20260927230803.166":
+  entity kbd_encoder at 11( 251) + 0 on 11;
+  architecture behavioral of kbd_encoder at 28( 715) + 0 on 12;
+file . "soma_sub.vhd" "15b09d29cceacbd9271f53bbf860f561b3dad4eb" "20260927230815.310":
+  entity soma_sub at 4( 52) + 0 on 13;
+  architecture dataflow of soma_sub at 19( 454) + 0 on 14;
+file . "top_calculator.vhd" "ba1ada25606eebe69384cf7b7da34a92b4bab21f" "20260927232200.471":
+  entity calc at 3( 51) + 0 on 27;
+  architecture structural of calc at 22( 494) + 0 on 28;
