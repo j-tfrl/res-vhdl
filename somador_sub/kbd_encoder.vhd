@@ -17,7 +17,7 @@ entity kbd_encoder is
     	clk 	: IN STD_LOGIC;
         rst		: IN STD_LOGIC;
       	row_in	: IN STD_LOGIC_VECTOR(3 DOWNTO 0);  
-        col_out	: IN STD_LOGIC_VECTOR(3 DOWNTO 0);  -- fluxo de input
+        col_out	: OUT STD_LOGIC_VECTOR(3 DOWNTO 0);  -- fluxo de input
         dig_A 	: OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
         dig_B 	: OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
 		op		: OUT STD_LOGIC
@@ -29,7 +29,7 @@ architecture behavioral of kbd_encoder is
 	SIGNAL scan_col		: INTEGER range 0 to 3:=0;
     SIGNAL key_code 	: STD_LOGIC_VECTOR(3 DOWNTO 0); -- 0-9
     -- >< era key_strobe
-    SIGNAL status_ide 	: STD_LOGIC :='0'; --define se está ocupado ou não
+    SIGNAL status_idle 	: STD_LOGIC :='0'; --define se está ocupado ou não
     
     -- ajuda a converter os números em binário (BCD)
     FUNCTION bin_to_bcd (bin: integer) return STD_LOGIC_VECTOR is 
@@ -94,8 +94,8 @@ begin
     variable prev_strobe: STD_LOGIC 			 := '0';
   begin 
   	if rst='1' then
-    	num_A<=0;
-        num_B<=0;
+    	num_A:=0;
+        num_B:=0;
         state<=0;
         op<='0';
         dig_A<=(others=>'0');
@@ -126,10 +126,11 @@ begin
                     	op<='1'; -- opera '-'
                     end if;
                     
-                    state:='1'; -- estado é uma variável (indicamos que houve interação)
-        end if;
-    end if;  
-    prev_strobe<=status_idle;
-end if;
+                    state:=1; -- estado é uma variável (indicamos que houve interação)
+                end if;
+                prev_strobe:=status_idle;
+
+                end if;  
+    end if;
 end process;
 end Behavioral;
