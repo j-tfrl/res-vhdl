@@ -40,7 +40,7 @@ architecture behavioral of kbd_encoder is
         else temp:=bin;
         end if;
         for i in 0 to 2 loop
-        	bcd(i*4+3 downto i*4) :=STD_LOGIC_VECTOR(to_unsigned((temp/10**i)) mod 10,4);
+        	bcd(i*4+3 downto i*4) := STD_LOGIC_VECTOR(to_unsigned((temp/10**i)) mod 10,4));    
         end loop;
      return bcd;
      end function;
@@ -96,11 +96,11 @@ begin
   	if rst='1' then
     	num_A:=0;
         num_B:=0;
-        state<=0;
+        state:=0;
         op<='0';
         dig_A<=(others=>'0');
         dig_B<=(others=>'0');
-        prev_strobe<='0';
+        prev_strobe:='0';
      elsif rising_edge(clk) then
      	if (status_idle='1' and prev_strobe='0') then
         	if (key_code >= "0000" and key_code <= "1001") then
