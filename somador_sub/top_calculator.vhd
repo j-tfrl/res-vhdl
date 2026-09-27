@@ -9,7 +9,7 @@ entity calc is
     	clk				: IN STD_LOGIC;
         rst				: IN STD_LOGIC;
         row_in			: IN STD_LOGIC_VECTOR(3 downto 0);
-        col_out			: IN STD_LOGIC_VECTOR(3 downto 0);
+        col_out			: OUT STD_LOGIC_VECTOR(3 downto 0);
         
         -- 7seg
         an				: OUT STD_LOGIC_VECTOR(3 downto 0);
@@ -28,7 +28,7 @@ architecture structural of calc is
 
 begin 
 	
-    kb 			: entity work.kdb_encoder
+    kb 			: entity work.kbd_encoder
     	port map(
         	clk		=> 	clk,
             rst		=> 	rst,
@@ -58,13 +58,10 @@ begin
     
     bcd7seg		: entity work.bcd7seg
     	port map(
-        	sw_debounce =>  resultado & "0000" -- indica estado de desocupação
+        	sw_debounce =>  resultado & "0000", -- indica estado de desocupação
             an			=> an,
             seg			=> seg
         );
      
     Cout <= overflow(12);
-end architecture;
-    
- end architecture;
-    
+end architecture;    
